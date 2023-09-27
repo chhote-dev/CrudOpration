@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width" />
+    <title>UpdateRecord</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row">
+        
+        <div class="col-6 mx-auto my-5 p-5 rounded rounded-3 border border-1 border-dark">
+            <h1 class="text-center">Employee Update Form</h1>
+            @if (ViewBag.rows != null)
+            {
+                <form method="post">
+                    Empid
+                    <input class="form-control" readonly value="@ViewBag.rows[0]" type="text" name="emptid" /><br />
+                    EmpName:
+                    <input class="form-control" type="text" value="@ViewBag.rows[1]" name="empname" /><br />
+                    City
+                    <input class="form-control" type="text" value="@ViewBag.rows[2]" name="city" /> <br />
+                    Salary
+                    <input class="form-control" type="number" value="@ViewBag.rows[3]" name="salary" /><br />
+                    @*Deptid*@
+                    @*<input class="form-control" type="number" value="@ViewBag.rows[4]" name="deptid" /><br />*@
+                    Department Name
+                    @*<input class="form-control" type="number" name="deptid" /><br />*@
+                    <select name="deptid" class="form-control">
+                        <option>select Dapartment Name</option>
+                        @if (ViewBag.d1 != null)
+                        {
+                            string a = "";
+
+                            foreach (var data in ViewBag.d1.Rows)
+                            {
+
+                                if (@ViewBag.rows[4] == data[0])
+                                {
+                                    a = "selected";
+                                }
+                                else
+                                {
+                                    a = "";
+                                }
+
+                                <option @a value="@data[0]">@data[1]</option>
+
+                            }
+
+                        }
+                    </select><br/>
+
+                    <input type="submit" class="btn btn-danger" value="Submit" />
+                </form>
+            }
+        </div>
+    </div>
+</body>
+</html>

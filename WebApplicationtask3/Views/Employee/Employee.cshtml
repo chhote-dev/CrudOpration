@@ -1,0 +1,88 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Employee</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row">
+        <div class="col-4 mx-auto">
+            <h1 class="text-center">Employee Page</h1>
+            <form method="post">
+                <input class="form-control" hidden type="text" name="emptid" /><br />
+                EmpName:
+                <input class="form-control" type="text" name="empname" /><br />
+                City
+                <input class="form-control" type="text" name="city" /> <br />
+                Salary
+                <input class="form-control" type="number" name="salary" /><br />
+                Department Name
+                @*<input class="form-control" type="number" name="deptid" /><br />*@
+                <select name="deptid" class="form-control">
+                    <option>select Dapartment Name</option>
+                    @if (ViewBag.d1 != null)
+                    {
+                        foreach (var data in ViewBag.d1.Rows)
+                        {
+
+                            <option value="@data[0]">@data[1]</option>
+
+                        }
+
+                    }
+                </select><br />
+                <input type="submit" value="Submit" class="btn btn-success" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<br />
+
+
+@*   Get Form of Employee Table*@
+
+
+<div class="row">
+    <div class="col-sm-6 mx-auto">
+
+
+        <table class=" table table-striped table-bordered">
+            <tr>
+                @*<th>Empid</th>*@
+                <th>EmpName</th>
+                <th>City</th>
+                <th>Salary</th>
+                <th>DeptName</th>
+                <th>Action</th>
+            </tr>
+            @if (ViewBag.dt != null)
+            {
+                foreach (var show in ViewBag.dt.Rows)
+                {
+                    <tr>
+                        @*<td>@show["empid"]</td>*@
+                        <td>@show["Empname"]</td>
+                        <td>@show["City"]</td>
+                        <td>@show["Salary"]</td>
+                        <td>@show["DeptName"]</td>
+                        <td>
+                            <a class="btn btn-success" href="/employee/updaterecord?id=@show["empid"]">Update</a>
+                            <a class="btn btn-danger" href="/employee/DeleteEmployee?id=@show["empid"]">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+
+
+        </table>
+    </div>
+</div>

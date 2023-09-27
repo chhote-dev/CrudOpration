@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>EditRecord</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-6 mx-auto my-5 p-5 rounded rounded-3 border border-1 border-dark">
+            <h1 class="text-center">Update Department Form</h1>
+            @if (ViewBag.rows != null)
+            {
+                <form method="post">
+                    Deptid
+                    <input class="form-control" type="text" value="@ViewBag.rows[0]" name="deptid" readonly /><br />
+                    DeptName:
+                    <input class="form-control" type="text" value="@ViewBag.rows[1]" name="deptname" /><br />
+                    <input class="btn btn-primary" type="submit" value="submit" />
+                </form>
+            }
+        </div>
+    </div>
+</body>
+</html>
